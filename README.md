@@ -1,4 +1,13 @@
-# Project configuration
+# Fork repository
+
+To **Fork** this repository:
+
+- Click on the **Fork** button in the top right corner of this repository. This will create a copy of this repository in your GitHub account.
+- You can clone your new repository and make changes.
+
+When you finish your app by pushing it to your repository, please, send us HTTPS link to your repository.
+
+## Project configuration
 
 Use **yarn install** or **npm install** for installing node_modules.
 
@@ -49,5 +58,3 @@ Extra task (optional): By pressing down the Escape key, input field should reset
 Application should contain information about selected and unselected users.
 By clicking on user card, that card should be marked as selected and **selected users count** should be increased by 1 and **unselected users count** should be decreased by 1.
 By clicking on user card which is already selected, that card should be unselected and **selected users count** should be decreased by 1 and **unselected users count** should be increased by 1.
-
-### When you finish your project, create new branch (name it with your name) and push it back to our repository.
