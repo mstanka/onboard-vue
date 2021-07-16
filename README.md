@@ -3,7 +3,7 @@
 To **Fork** this repository:
 
 - Click on the **Fork** button in the top right corner of this repository. This will create a copy of this repository in your GitHub account.
-- You can clone your new repository and make changes.
+- You can then clone your newly copied repository to your computer and start building the applicaton based on the requirements below.
 
 When you finish your app by pushing it to your repository, please, send us HTTPS link to your repository.
 
