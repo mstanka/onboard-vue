@@ -14,7 +14,8 @@
     <div
       class="
         w-full
-        md:w-1/4 sm:flex-1
+        md:w-1/4
+        sm:flex-1
         p-2
         m-1
         rounded-sm
@@ -22,12 +23,13 @@
         text-blue-100
       "
     >
-      Selected Users: 0
+      Selected Users: {{ selectedUsers }}
     </div>
     <div
       class="
         w-full
-        md:w-1/4 sm:flex-1
+        md:w-1/4
+        sm:flex-1
         p-2
         m-1
         rounded-sm
@@ -35,7 +37,7 @@
         text-blue-100
       "
     >
-      Unselected Users: 0
+      Unselected Users: {{ unselectedUsers }}
     </div>
   </div>
 </template>
@@ -47,6 +49,8 @@ export default {
   name: 'Form',
   props: {
     user: Object,
+    selectedUsers: Number,
+    unselectedUsers: Number,
   },
 };
 </script>

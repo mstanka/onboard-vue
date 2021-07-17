@@ -1,6 +1,14 @@
 <template>
   <div
     class="
+      `${selectedUser
+      ?
+      'bg-blue-800
+      text-blue-100'
+      :
+      'bg-blue-100
+      text-blue-800'
+      }
       max-w-card
       w-full
       h-72
@@ -13,8 +21,9 @@
       p-6
       mb-4
       cursor-pointer
-      hover:shadow-md
+      hover:shadow-xl`
     "
+    @click="toggleSelectedUser, updateUsersCount"
   >
     <div class="text-center">
       <svg
@@ -45,6 +54,15 @@ export default {
   name: 'UserCard',
   props: {
     user: Object,
+  },
+  computed: {
+    toggleSelectedUser() {
+      console.log(this.selectedUser); // Unhandled error during execution of native event handler ??
+      return (this.selectedUser = !this.selectedUser);
+    },
+    updateUsersCount() {
+      this.$emit('update-users-count');
+    },
   },
 };
 </script>
