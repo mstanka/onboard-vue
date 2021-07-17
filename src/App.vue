@@ -1,6 +1,7 @@
 <template>
   <main class="h-screen max-w-screen-xl mx-auto mt-4 text-gray-500">
     <div class="flex flex-wrap justify-around items-center">
+      <div v-if="!users.length">Data loading... Please wait!</div>
       <UserCard v-for="user in users" :key="user.id" :user="user" />
     </div>
   </main>
@@ -22,10 +23,14 @@ export default {
   created() {
     const axios = inject('$axios');
 
-    axios
-      .get('https://jsonplaceholder.typicode.com/users')
-      .then((response) => (this.users = response.data))
-      .catch((error) => console.log(error));
+    return new Promise((resolve, reject) => {
+      axios
+        .get('https://jsonplaceholder.typicode.com/users')
+        .then((response) => {
+          setTimeout(() => resolve((this.users = response.data)), 2000);
+        })
+        .catch((error) => reject(error));
+    });
   },
 };
 </script>
