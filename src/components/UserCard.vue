@@ -49,7 +49,6 @@
 </template>
 
 <script>
-import { inject } from 'vue';
 
 export default {
   name: 'UserCard',
@@ -58,8 +57,9 @@ export default {
     emits: ['update-users-count'],
   },
   computed: {
-    toggleSelectedUser(user) {
-      return (this.user.selectedUser = !this.user.selectedUser);
+    toggleSelectedUser() {
+      console.log(this.user.selectedUser);
+      this.user.selectedUser = !this.user.selectedUser;
     },
   },
 };

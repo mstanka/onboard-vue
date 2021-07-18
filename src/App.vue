@@ -1,6 +1,10 @@
 <template>
   <main class="h-screen max-w-screen-xl mx-auto mt-4 text-gray-500">
-    <Form :selectedUsers="selectedUsers" :unselectedUsers="unselectedUsers" />
+    <Form
+      :selectedUsers="selectedUsers"
+      :unselectedUsers="unselectedUsers"
+      @searched-item="filterUsers"
+    />
     <div class="flex flex-wrap justify-around items-center">
       <div v-if="!users.length">Data loading... Please wait!</div>
       <UserCard
@@ -56,6 +60,11 @@ export default {
         this.selectedUsers -= 1;
         this.unselectedUsers += 1;
       }
+    },
+    filterUsers(searchResult) {
+      return this.users.filter(function(user) {
+        searchResult.toLowerCase().includes(user.name.toLowerCase());
+      });
     },
   },
 };
