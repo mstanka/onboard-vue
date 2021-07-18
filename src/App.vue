@@ -48,8 +48,8 @@ export default {
     });
   },
   methods: {
-    updateUsersCount() {
-      if (this.selectedUsers < 10 || this.unselectedUsers > 0) {
+    updateUsersCount(selectedUser) {
+      if (selectedUser) {
         this.selectedUsers += 1;
         this.unselectedUsers -= 1;
       } else {

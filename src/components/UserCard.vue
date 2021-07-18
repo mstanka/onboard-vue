@@ -1,7 +1,7 @@
 <template>
   <div
     class="
-      `${selectedUser
+      `${user.selectedUser
       ?
       'bg-blue-800
       text-blue-100'
@@ -23,7 +23,9 @@
       cursor-pointer
       hover:shadow-xl`
     "
-    @click="toggleSelectedUser, updateUsersCount"
+    @click="
+      toggleSelectedUser, $emit('update-users-count', `${user.selectedUser}`)
+    "
   >
     <div class="text-center">
       <svg
@@ -38,7 +40,6 @@
           clip-rule="evenodd"
         />
       </svg>
-
       <p class="pb-0 text-blue-800">{{ user.name }}</p>
       <p class="text-xs">{{ user.email }}</p>
     </div>
@@ -54,14 +55,11 @@ export default {
   name: 'UserCard',
   props: {
     user: Object,
+    emits: ['update-users-count'],
   },
   computed: {
-    toggleSelectedUser() {
-      console.log(this.selectedUser); // Unhandled error during execution of native event handler ??
-      return (this.selectedUser = !this.selectedUser);
-    },
-    updateUsersCount() {
-      this.$emit('update-users-count');
+    toggleSelectedUser(user) {
+      return (this.user.selectedUser = !this.user.selectedUser);
     },
   },
 };
