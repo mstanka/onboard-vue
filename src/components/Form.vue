@@ -10,6 +10,10 @@
         focus:outline-none focus:ring-2 focus:ring-blue-800
       "
       placeholder="Search user by name ..."
+      id="search"
+      type="text"
+      v-model="search"
+      @change="$emit('searched-item', search)"
     />
     <div
       class="
@@ -43,7 +47,6 @@
 </template>
 
 <script>
-import { inject } from 'vue';
 
 export default {
   name: 'Form',
@@ -51,6 +54,12 @@ export default {
     user: Object,
     selectedUsers: Number,
     unselectedUsers: Number,
+    emits: ['searched-item'],
+  },
+  data() {
+    return {
+      search: '',
+    };
   },
 };
 </script>

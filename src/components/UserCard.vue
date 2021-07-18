@@ -1,14 +1,13 @@
 <template>
   <div
     class="
-      `${selectedUser
+      `${user.isSelected
       ?
       'bg-blue-800
       text-blue-100'
       :
       'bg-blue-100
-      text-blue-800'
-      }
+      text-blue-800'}
       max-w-card
       w-full
       h-72
@@ -23,7 +22,7 @@
       cursor-pointer
       hover:shadow-xl`
     "
-    @click="toggleSelectedUser, updateUsersCount"
+    @click="toggleSelectedUser"
   >
     <div class="text-center">
       <svg
@@ -38,7 +37,7 @@
           clip-rule="evenodd"
         />
       </svg>
-
+      <p>{{ user.isSelected }}</p>
       <p class="pb-0 text-blue-800">{{ user.name }}</p>
       <p class="text-xs">{{ user.email }}</p>
     </div>
@@ -48,20 +47,15 @@
 </template>
 
 <script>
-import { inject } from 'vue';
-
 export default {
   name: 'UserCard',
   props: {
     user: Object,
   },
-  computed: {
+  emits: ['toggle-selected'],
+  methods: {
     toggleSelectedUser() {
-      console.log(this.selectedUser); // Unhandled error during execution of native event handler ??
-      return (this.selectedUser = !this.selectedUser);
-    },
-    updateUsersCount() {
-      this.$emit('update-users-count');
+      this.$emit('toggle-selected', this.user.id);
     },
   },
 };
