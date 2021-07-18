@@ -12,6 +12,7 @@
         :key="user.id"
         :user="user"
         @update-users-count="updateUsersCount"
+        @toggle-selected="toggleSelectedCounts"
       />
     </div>
   </main>
@@ -44,7 +45,7 @@ export default {
           const responseUsers = response.data;
           const updatedUsers = responseUsers.map((user) => ({
             ...user,
-            selectedUser: false,
+            isSelected: false,
           }));
           setTimeout(() => resolve((this.users = updatedUsers)), 2000);
         })
@@ -52,17 +53,20 @@ export default {
     });
   },
   methods: {
-    updateUsersCount(selectedUser) {
-      if (selectedUser) {
-        this.selectedUsers += 1;
-        this.unselectedUsers -= 1;
-      } else {
-        this.selectedUsers -= 1;
-        this.unselectedUsers += 1;
-      }
+    toggleSelectedCounts(userId) {
+      const selectedUser = this.users.find((user) => user.id === userId);
+      selectedUser.isSelected = !selectedUser.isSelected;
+
+      this.selectedUsers = this.users.filter(
+        (user) => user.isSelected === true,
+      ).length;
+
+      this.unselectedUsers = this.users.filter(
+        (user) => user.isSelected === false,
+      ).length;
     },
     filterUsers(searchResult) {
-      return this.users.filter(function(user) {
+      return this.users.filter(function (user) {
         searchResult.toLowerCase().includes(user.name.toLowerCase());
       });
     },

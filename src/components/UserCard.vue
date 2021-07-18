@@ -1,14 +1,13 @@
 <template>
   <div
     class="
-      `${user.selectedUser
+      `${user.isSelected
       ?
       'bg-blue-800
       text-blue-100'
       :
       'bg-blue-100
-      text-blue-800'
-      }
+      text-blue-800'}
       max-w-card
       w-full
       h-72
@@ -23,9 +22,7 @@
       cursor-pointer
       hover:shadow-xl`
     "
-    @click="
-      toggleSelectedUser, $emit('update-users-count', `${user.selectedUser}`)
-    "
+    @click="toggleSelectedUser"
   >
     <div class="text-center">
       <svg
@@ -40,6 +37,7 @@
           clip-rule="evenodd"
         />
       </svg>
+      <p>{{ user.isSelected }}</p>
       <p class="pb-0 text-blue-800">{{ user.name }}</p>
       <p class="text-xs">{{ user.email }}</p>
     </div>
@@ -49,17 +47,15 @@
 </template>
 
 <script>
-
 export default {
   name: 'UserCard',
   props: {
     user: Object,
-    emits: ['update-users-count'],
   },
-  computed: {
+  emits: ['toggle-selected'],
+  methods: {
     toggleSelectedUser() {
-      console.log(this.user.selectedUser);
-      this.user.selectedUser = !this.user.selectedUser;
+      this.$emit('toggle-selected', this.user.id);
     },
   },
 };
