@@ -10,7 +10,12 @@
       <UserCard
         v-for="user in users"
         :key="user.id"
-        :user="user"
+        :id="user.id"
+        :name="user.name"
+        :email="user.email"
+        :company="user.company.name"
+        :phone="user.phone"
+        :isSelected="user.isSelected"  
         @toggle-selected="toggleSelectedCounts"
       />
     </div>

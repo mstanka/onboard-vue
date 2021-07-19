@@ -51,7 +51,6 @@
 export default {
   name: 'Form',
   props: {
-    user: Object,
     selectedUsers: Number,
     unselectedUsers: Number,
   },

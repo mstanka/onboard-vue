@@ -1,7 +1,7 @@
 <template>
   <div
     class="
-      `${user.isSelected
+      `${isSelected
       ?
       '
       bg-blue-800
@@ -9,7 +9,8 @@
       '
       :
       '
-      bg-white text-gray-700
+      bg-white
+      text-gray-700
       '
       }
       max-w-card
@@ -42,12 +43,12 @@
           clip-rule="evenodd"
         />
       </svg>
-      <p>{{ user.isSelected }}</p>
-      <p class="pb-0 text-blue-800">{{ user.name }}</p>
-      <p class="text-xs">{{ user.email }}</p>
+      <p>{{ isSelected }}</p>
+      <p class="pb-0 text-blue-800">{{ name }}</p>
+      <p class="text-xs">{{ email }}</p>
     </div>
-    <p class="text-black">{{ user.company.name }}</p>
-    <p class="text-xs">{{ user.phone }}</p>
+    <p class="text-black">{{ company }}</p>
+    <p class="text-xs">{{ phone }}</p>
   </div>
 </template>
 
@@ -55,12 +56,17 @@
 export default {
   name: 'UserCard',
   props: {
-    user: Object,
+    id: Number,
+    name: String,
+    email: String,
+    company: String,
+    phone: String,
+    isSelected: Boolean,
   },
   emits: ['toggle-selected'],
   methods: {
     toggleSelectedUser() {
-      this.$emit('toggle-selected', this.user.id);
+      this.$emit('toggle-selected', this.id);
     },
   },
 };
