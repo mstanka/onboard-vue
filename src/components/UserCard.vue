@@ -1,18 +1,6 @@
 <template>
   <div
     class="
-      `${isSelected
-      ?
-      '
-      bg-blue-800
-      text-blue-100
-      '
-      :
-      '
-      bg-white
-      text-gray-700
-      '
-      }
       max-w-card
       w-full
       h-72
@@ -26,8 +14,8 @@
       mb-4
       cursor-pointer
       hover:shadow-xl
-      `
     "
+    :class="selectedClass"
     @click="toggleSelectedUser"
   >
     <div class="text-center">
@@ -43,11 +31,10 @@
           clip-rule="evenodd"
         />
       </svg>
-      <p>{{ isSelected }}</p>
-      <p class="pb-0 text-blue-800">{{ name }}</p>
+      <p class="pb-0">{{ name }}</p>
       <p class="text-xs">{{ email }}</p>
     </div>
-    <p class="text-black">{{ company }}</p>
+    <p>{{ company }}</p>
     <p class="text-xs">{{ phone }}</p>
   </div>
 </template>
@@ -67,6 +54,13 @@ export default {
   methods: {
     toggleSelectedUser() {
       this.$emit('toggle-selected', this.id);
+    },
+  },
+  computed: {
+    selectedClass() {
+      return this.isSelected
+        ? 'bg-blue-800 text-blue-100'
+        : 'bg-white text-gray-700';
     },
   },
 };
