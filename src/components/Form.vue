@@ -2,7 +2,7 @@
   <div class="flex flex-wrap justify-center items-center text-center m-1">
     <input
       class="
-        border border-transparent
+        border
         rounded-sm
         w-full
         md:w-1/2
@@ -10,11 +10,12 @@
         focus:outline-none focus:ring-2 focus:ring-blue-800
       "
       placeholder="Search user by name ..."
-      id="search"
+      id="searchInput"
       type="text"
-      v-model="search"
-      @change="$emit('searched-item', search)"
+      v-model.lazy="searchInput"
+      @change="onInputChange"
     />
+
     <div
       class="
         w-full
@@ -47,19 +48,28 @@
 </template>
 
 <script>
-
 export default {
   name: 'Form',
   props: {
     user: Object,
     selectedUsers: Number,
     unselectedUsers: Number,
-    emits: ['searched-item'],
   },
+  emits: ['searched-item'],
   data() {
     return {
-      search: '',
+      searchInput: '',
     };
+  },
+  watch: {
+    searchInput(newSearchInput, oldSearchInput) {
+      this.searchInput = newSearchInput;
+    },
+  },
+  methods: {
+    onInputChange() {
+      this.$emit('searched-item', this.searchInput);
+    },
   },
 };
 </script>

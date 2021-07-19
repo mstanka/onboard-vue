@@ -11,7 +11,6 @@
         v-for="user in users"
         :key="user.id"
         :user="user"
-        @update-users-count="updateUsersCount"
         @toggle-selected="toggleSelectedCounts"
       />
     </div>
@@ -52,6 +51,7 @@ export default {
         .catch((error) => reject(error));
     });
   },
+
   methods: {
     toggleSelectedCounts(userId) {
       const selectedUser = this.users.find((user) => user.id === userId);
@@ -66,9 +66,9 @@ export default {
       ).length;
     },
     filterUsers(searchResult) {
-      return this.users.filter(function (user) {
-        searchResult.toLowerCase().includes(user.name.toLowerCase());
-      });
+      this.users = this.users.filter((user) =>
+        user.name.toLowerCase().includes(searchResult.toLowerCase()),
+      );
     },
   },
 };

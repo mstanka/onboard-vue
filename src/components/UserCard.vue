@@ -3,11 +3,15 @@
     class="
       `${user.isSelected
       ?
-      'bg-blue-800
-      text-blue-100'
+      '
+      bg-blue-800
+      text-blue-100
+      '
       :
-      'bg-blue-100
-      text-blue-800'}
+      '
+      bg-white text-gray-700
+      '
+      }
       max-w-card
       w-full
       h-72
@@ -20,7 +24,8 @@
       p-6
       mb-4
       cursor-pointer
-      hover:shadow-xl`
+      hover:shadow-xl
+      `
     "
     @click="toggleSelectedUser"
   >
