@@ -63,11 +63,11 @@ export default {
       selectedUser.isSelected = !selectedUser.isSelected;
 
       this.selectedUsers = this.users.filter(
-        (user) => user.isSelected === true,
+        (user) => user.isSelected,
       ).length;
 
       this.unselectedUsers = this.users.filter(
-        (user) => user.isSelected === false,
+        (user) => !user.isSelected,
       ).length;
     },
     filterUsers(searchResult) {
